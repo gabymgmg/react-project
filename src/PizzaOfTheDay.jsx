@@ -5,14 +5,14 @@ const intl = new Intl.NumberFormat("en-US", {
   currency: "USD",
 });
 
-const PizzaOfTheDay = () =>{
-    const pizzaOfTheDay = usePizzaOfTheDay()
+const PizzaOfTheDay = () => {
+  const pizzaOfTheDay = usePizzaOfTheDay();
 
-    if(!pizzaOfTheDay) {
-        return <div> Loading... </div>
-    }
+  if (!pizzaOfTheDay) {
+    return <div> Loading... </div>;
+  }
 
-    return (
+  return (
     <div className="pizza-of-the-day">
       <h2>Pizza of the Day</h2>
       <div>
@@ -31,6 +31,6 @@ const PizzaOfTheDay = () =>{
       </div>
     </div>
   );
-}
+};
 
-export default PizzaOfTheDay
+export default PizzaOfTheDay;
