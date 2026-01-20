@@ -17,18 +17,18 @@ const intl = new Intl.NumberFormat("en-US", {
 function PastOrderRoute() {
   const [page, setPage] = useState(1);
   const [focusedOrder, setFocusedOrder] = useState();
-  
+
   const { isLoading, data } = useQuery({
-    queryKey: ["past-orders",page],
+    queryKey: ["past-orders", page],
     queryFn: () => getPastOrders(page),
     staleTime: 3000,
   });
 
-  const {isLoading:isLoadingPastOrder, data:pastOrderData} = useQuery({
+  const { isLoading: isLoadingPastOrder, data: pastOrderData } = useQuery({
     queryKey: ["past-order", focusedOrder],
-    queryFn: ()=> getPastOrder(focusedOrder),
+    queryFn: () => getPastOrder(focusedOrder),
     staleTime: 24 * 60 * 60 * 1000, // one day in milliseconds,
-  })
+  });
 
   if (isLoading) {
     return (
