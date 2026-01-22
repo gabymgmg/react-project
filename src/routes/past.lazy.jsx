@@ -4,9 +4,10 @@ import { createLazyFileRoute } from "@tanstack/react-router";
 import getPastOrders from "../api/getPastOrders";
 import getPastOrder from "../api/getPastOrder";
 import Modal from "../Modal";
+import ErrorBoundary from "../ErrorBoundary";
 
 export const Route = createLazyFileRoute("/past")({
-  component: PastOrderRoute,
+  component: ErrorBoundaryWrappedPastOrderRoutes,
 });
 
 const intl = new Intl.NumberFormat("en-US", {
@@ -14,7 +15,15 @@ const intl = new Intl.NumberFormat("en-US", {
   currency: "USD",
 });
 
-function PastOrderRoute() {
+function ErrorBoundaryWrappedPastOrderRoutes() {
+  return (
+    <ErrorBoundary>
+      <PastOrdersRoute />
+    </ErrorBoundary>
+  );
+}
+
+function PastOrdersRoute() {
   const [page, setPage] = useState(1);
   const [focusedOrder, setFocusedOrder] = useState();
 
